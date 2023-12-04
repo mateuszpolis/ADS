@@ -90,15 +90,31 @@ public:
       if (leftChild == nullptr && rightChild == nullptr) {
         break;
       }
-      if (leftChild != nullptr && rightChild != nullptr && *leftChild > *rightChild && *leftChild > elements[index]) {
-        swap(*leftChild, elements[index]);
-        index = index * 2;
-      } 
-      else if (rightChild != nullptr && *rightChild > elements[index]) {
+
+      if (leftChild == nullptr) {
+        if (elements[index] > *rightChild) {
+          break;
+        }
         swap(*rightChild, elements[index]);
         index = index * 2 + 1;
+        continue;
+      } else if (rightChild == nullptr) {
+        if (elements[index] > *leftChild) {
+          break;
+        }
+        swap(*leftChild, elements[index]);
+        index = index * 2;
+        continue;
       } else {
-        break;
+        if (elements[index] > *leftChild && elements[index] > *rightChild) {
+          break;
+        } else if (*leftChild > *rightChild) {
+          swap(*leftChild, elements[index]);
+          index = index * 2;
+        } else {
+          swap(*rightChild, elements[index]);
+          index = index * 2 + 1;
+        }
       }
     }
   }
