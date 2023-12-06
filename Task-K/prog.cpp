@@ -163,6 +163,10 @@ void Dijkstra(Graph *graph)
             {
                 graph->vertices[dest].distance = graph->vertices[topId].distance + weight;
                 graph->vertices[dest].inS = true;
+                if (dest == graph->vertices.size() - 1)
+                {
+                    break;
+                }
             }
         }
         graph->vertices[topId].visited = true;        

@@ -86,6 +86,10 @@ void Dijkstra(vector<Vertex> *graph)
         // cout << "Updating distance of " << dest << " to " << graph->at(minVertex).distance + weight << "\n";
         graph->at(dest).distance = graph->at(minVertex).distance + weight;
         graph->at(dest).inS = true;
+        if (dest == n - 1)
+        {
+          break;
+        }
       }
     }
     minVertex = -1;
